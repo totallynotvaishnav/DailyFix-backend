@@ -1,5 +1,9 @@
 const Writings = require('../models/writings');
 const Users = require('../models/users');
+const { marked } = require('marked');
+const createDomPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const dompurify = createDomPurify(new JSDOM().window);
 
 exports.getWritings = async (req, res) => {
     console.log(req.userId);
@@ -28,7 +32,8 @@ exports.getWritingsById = async (req, res) => {
 exports.createWriting = async (req, res) => {
     const { content } = req.body;
     const authorId = req.userId;
-    const newWriting = new Writings(authorId, content);
+    const sanitizedContent = dompurify.sanitize(marked(content));
+    const newWriting = new Writings(authorId, sanitizedContent);
 
     const createdWriting = await newWriting.save();
     res.status(201).json({
