@@ -1,7 +1,7 @@
 {
     "name": "dailyfix-backend",
     "version": "1.0.0",
-    "main": "app.js",
+    "main": "index.js",
     "author": "vaishnav",
     "license": "MIT",
     "scripts": {
