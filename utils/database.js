@@ -1,9 +1,9 @@
+require('dotenv').config();
 const mongoDB = require('mongodb');
 
 const mongoClient = mongoDB.MongoClient;
 
-const URI =
-    'mongodb+srv://vaishnav:zPFTtpNeyRkLxWPN@cluster0.acy7w.mongodb.net/dailyfix?retryWrites=true&w=majority';
+const URI = process.env.MONGODB_URI;
 
 const connect = mongoClient.connect(URI, {
     wtimeoutMS: 2500,
