@@ -6,7 +6,6 @@ const { JSDOM } = require('jsdom');
 const dompurify = createDomPurify(new JSDOM().window);
 
 exports.getWritings = async (req, res) => {
-    console.log(req.userId);
     const allWritings = await Writings.fetchPostByUserId(req.userId);
 
     res.status(200).json({
